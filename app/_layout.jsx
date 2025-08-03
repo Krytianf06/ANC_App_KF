@@ -1,20 +1,27 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, useColorScheme, View } from "react-native";
 import { Stack } from "expo-router";
+import { Colors } from "../constants/Colors";
 
 const RootLayout = () => {
+	const colotSchema = useColorScheme();
+	console.log(colotSchema);
+	const theme = Colors[colotSchema] ?? Colors.light;
+
 	return (
-		<Stack screenOptions={{
-			headerStyle: { backgroundColor: "#2be328ff" },
-			headerTitleAlign: 'center',
-			headerBackTitle: "Back2"
-		}}>
+		<Stack
+			screenOptions={{
+				headerStyle: { backgroundColor: theme.navBackground },
+				headerTitleAlign: "center",
+				headerBackTitle: "Back2",
+				headerTintColor: theme.title,
+			}}>
 			<Stack.Screen
 				name='index'
 				options={{
 					title: "Home",
-					headerStyle: {
-						backgroundColor: "#f4511e",
-					},
+					// headerStyle: {
+					// 	backgroundColor: "#f4511e",
+					// },
 					headerTitleAlign: "center",
 					headerBackTitle: "Back",
 				}}
